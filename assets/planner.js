@@ -1,10 +1,24 @@
 var workPlanner = {};
+var createPlanner = function (workText, workTime, workDay)
 
-var workPlanner = function (workText, workTime, workDay)
 
 // daily planner to create a schedule
+$('table').append([
+ '<tr>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+    '<td></td>',
+  '</tr>'
+].join(''));
 
-
+console.log(workPlanner)
+console.log()
 // open the planner
 
 
@@ -12,7 +26,7 @@ var workPlanner = function (workText, workTime, workDay)
 
 
 // present with time blocks and view the time block for that day
-
+    
 
 // past, present and future separed by colors
 
@@ -21,7 +35,5 @@ var workPlanner = function (workText, workTime, workDay)
 
 
 // click to save button and save in local storage
-
-
 
 
