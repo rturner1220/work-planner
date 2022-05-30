@@ -120,3 +120,40 @@ var myHours = [
    savePlanner.append(saveBtn);
    timeblocks.append(hourBlock, hourplanner, savePlanner);
  })
+ 
+    // text for the event is saved in local storage
+    function saveReminders() {
+      localStorage.setItem("myHours", JSON.stringify(myHours));
+    }
+
+    function displayReminders() {
+      myHours.forEach(function (_thisHour) {
+        $(`#${_thisHour.id}`).val(_thisHour.reminder);
+      })
+    }
+
+  // sets existing local storage data to the view if it exists 
+    function start() {
+    var storedDay = JSON.parse(localStorage.getItem("myHours"));
+    
+    if (storedDay) {
+      myHours = storedDay;
+    }
+
+    saveReminders();
+    displayReminders();
+
+  }
+    start();   
+
+  // save data in localstorage
+  $(".saveBtn").on("click", function(event) {
+    event.preventDefault();
+    var saveEvent = 
+    $(this).siblings(".description").children(".future").attr("id");
+    myHours[saveEvent].reminder
+    $(this).siblings(".description").children(".future").val();
+    console.log(saveEvent);
+    saveReminders();
+    displayReminders();
+  })
