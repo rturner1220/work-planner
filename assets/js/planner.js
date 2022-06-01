@@ -74,27 +74,28 @@ var myHours = [
 ]
 
  myHours.forEach(function(thisHour) {
-   // creates timeblocks row
-   var timeblocks = $("<form>").attr({
+   // creates time blocks row
+   var timeBlocks = $("<form>").attr({
      "class": "row"
    });
-      $(".container").append(timeblocks);
+      $(".container").append(timeBlocks);
 
-   // creates time field
+   // creates time block
    var hourBlock = $("<div>")
    .text(`${thisHour.hour}${thisHour.cenit}`)
    .attr({
      "class": "col-md-2 hour"
    });
    
-   var hourplanner = $("<div>")
+   // create schedule data
+   var hourPlan = $("<div>")
    .attr({
      "class": "col-md-9 description p-0"
    });
 
    // time block is color-coded in past, present, or future
    var planData = $("<textarea>");
-   hourplanner.append(planData);
+   hourPlan.append(planData);
    planData.attr("id", thisHour.id);
    if (thisHour.time < moment().format("HH")) {
      planData.attr ({
@@ -110,22 +111,12 @@ var myHours = [
      })
     }
 
-    // create save button
-   var saveBtn = $("<i class='far fa-save fa-lg'></i>")
-   var savePlanner = $("<button>")
-   .attr({
-     "class": "col-md-1 saveBtn"
-   });
-
-   savePlanner.append(saveBtn);
-   timeblocks.append(hourBlock, hourplanner, savePlanner);
- })
- 
     // text for the event is saved in local storage
     function saveReminders() {
       localStorage.setItem("myHours", JSON.stringify(myHours));
     }
-
+  
+  // sets data in localstorage
     function displayReminders() {
       myHours.forEach(function (_thisHour) {
         $(`#${_thisHour.id}`).val(_thisHour.reminder);
@@ -142,18 +133,25 @@ var myHours = [
 
     saveReminders();
     displayReminders();
-
   }
-    start();   
+    start();
+
+    // create save btn
+    var saveButton = $("<i class='far fa-save fa-lg'></i>")
+    var savePlan = $("<button>")
+    .attr({
+      "class": "col-md-1 saveBtn"
+    });
+    savePlan.append(saveButton);
+    timeBlocks.append(hourBlock, hourPlan, savePlan);
+  })
 
   // save data in localstorage
   $(".saveBtn").on("click", function(event) {
     event.preventDefault();
-    var saveEvent = 
-    $(this).siblings(".description").children(".future").attr("id");
-    myHours[saveEvent].reminder
-    $(this).siblings(".description").children(".future").val();
-    console.log(saveEvent);
+    var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+    myHours[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+    console.log(saveIndex);
     saveReminders();
     displayReminders();
-  })
+})
