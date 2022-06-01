@@ -97,15 +97,15 @@ var myHours = [
    var planData = $("<textarea>");
    hourPlan.append(planData);
    planData.attr("id", thisHour.id);
-   if (thisHour.time < moment().format("HH")) {
+   if (thisHour.time < moment().format('HH')) {
      planData.attr ({
        "class": "past",
      })
-   } else if (thisHour.time === moment().format("HH")) {
+   } else if (thisHour.time === moment().format('HH')) {
      planData.attr ({
        "class": "present"
      })
-   } else if (thisHour.time > moment().format("HH")) {
+   } else if (thisHour.time > moment().format('HH')) {
      planData.attr({
        "class": "future"
      })
