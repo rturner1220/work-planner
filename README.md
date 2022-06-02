@@ -32,6 +32,4 @@ https://github.com/rturner1220/work-planner
 ##Website
 https://rturner1220.github.io/work-planner/
 
-
-Screenshots
-Screenshot Planner.png
+![Screenshot Planner](https://user-images.githubusercontent.com/101642385/171535612-5002236c-bbfe-40a6-b83b-07f2321b36b9.png)
